@@ -18,14 +18,14 @@
       <Text />
     </div>
     <div class="components-demo" v-else-if="modelValue == 2">
-      <Imagem />
+      <Image />
     </div>
 
   </div>
 </template>
 
 <script>
-import Imagem from './Imagem'
+import Image from './Image'
 import Text from './Text'
 
 export default {
@@ -44,7 +44,7 @@ export default {
     }
   },
   components: {
-    Imagem,
+    Image,
     Text
   }
 }
@@ -81,7 +81,6 @@ h3 {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 .components-demo {
-  margin-top: 2%;
   padding: 10px;
 }
 </style>
