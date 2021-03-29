@@ -15,9 +15,9 @@
           </label>
         </div>
       <div id="previewImage">
-        <h2 class="is-size-4">Comparacao entre imagens</h2>
-        <hr>
         <div v-if="url_image">
+          <h2 class="is-size-4">Comparacao entre imagens</h2>
+          <hr>
           <img :src="url_image" class="image-uploaded"/>       
           <img :src="url_image_data" />
         </div>
@@ -27,6 +27,8 @@
 </template>
 
 <script>
+import { compareImages } from "../functions/image-handling"; 
+
 export default {
   name: 'Image',
   data: function() {
@@ -47,6 +49,8 @@ export default {
           fileName.textContent = file.name;
 
           this.url_image = URL.createObjectURL(file);
+
+          compareImages(this.url_image, this.url_image_data);
     }
   }
 }
