@@ -1,35 +1,32 @@
-function getBase64Image(img) {
-    // Create an empty canvas element
-    var canvas = document.createElement("canvas");
-    canvas.width = img.width;
-    canvas.height = img.height;
+function createCanvas(img) {
 
-    // Copy the image contents to the canvas
-    var ctx = canvas.getContext("2d");
-    ctx.drawImage(img, 0, 0);
+  var canvas = document.createElement('canvas');
+  
+  var ctx = canvas.getContext('2d');
 
-    var dataURL = canvas.toDataURL("image/png");
+  canvas.width = 300;
+  canvas.height = 300;
 
-    return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+  ctx.drawImage(img, 0, 0, 300, 300);
+
+  var e = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+  console.log(e);
+
 }
 
-function compareImages(image_uploaded, image_source) {
-    var a = new Image(),
-        b = new Image();
-    
-    a.src = image_uploaded;
-    b.src = image_source;
 
-    var a_base64 = getBase64Image(a),
-        b_base64 = getBase64Image(b);
-    
-    if (a_base64 === b_base64)
-    {
-      console.log("ARE EQUAL");
-    }
-    else {
-      console.log("ARE DIFFERENT");
-    }
+
+function getImages(localImage) {
+
+  var img = new Image(300, 300);
+
+  img.src = localImage;
+
+  img.onload = function() {  
+    createCanvas(img);
   }
 
-  export {compareImages}
+}
+
+  export {getImages}
