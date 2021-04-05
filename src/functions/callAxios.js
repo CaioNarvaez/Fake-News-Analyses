@@ -2,8 +2,7 @@ const axios = require('axios').default;
 
 function Post() {
     axios.post('/server/crawler.php', {
-        firstName: 'Fred',
-        lastName: 'Flintstone'
+        text: 'Test text'
       })
       .then(function (response) {
         return response;
