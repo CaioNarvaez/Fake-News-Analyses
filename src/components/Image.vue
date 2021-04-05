@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { getImages } from "../functions/image-handling"; 
+import { getImage } from "../functions/image-handling"; 
 
 export default {
   name: 'Image',
@@ -50,7 +50,7 @@ export default {
 
           this.url_image = URL.createObjectURL(file);
 
-          getImages(this.url_image);
+          getImage(this.url_image);
     }
   }
 }

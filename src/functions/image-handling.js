@@ -1,3 +1,5 @@
+import Post from './callAxios';
+
 function createCanvas(img) {
 
   var canvas = document.createElement('canvas');
@@ -9,15 +11,15 @@ function createCanvas(img) {
 
   ctx.drawImage(img, 0, 0, 300, 300);
 
-  var e = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
+  //var e = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
 
-  console.log(e);
+  var response = Post();
+
+  console.log(response);
 
 }
 
-
-
-function getImages(localImage) {
+function getImage(localImage) {
 
   var img = new Image(300, 300);
 
@@ -29,4 +31,4 @@ function getImages(localImage) {
 
 }
 
-  export {getImages}
+  export {getImage}
