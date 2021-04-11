@@ -4,15 +4,19 @@
         
         /**
          * Function to change all spaces from a given text to "plus"
+         * 
+         * @param String $text
          */
-        function formatTextPlus($text) {
+        function formatTextPlus(String $text) {
             return strtr($text, " ", "+");
         }
 
         /**
          * Function to change all spaces from a given text to "hyphens"
+         * 
+         * @param String $text
          */
-        function formatTextHyphen($text) {
+        function formatTextHyphen(String $text) {
             return strtr($text, " ", "-");
         }
 
