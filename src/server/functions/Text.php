@@ -1,5 +1,6 @@
 <?php
 
+namespace Functions;
     class Text {
         
         /**
@@ -31,6 +32,25 @@
             $semAcentos = array('a', 'a', 'a', 'a', 'a', 'a', 'c', 'e', 'e', 'e', 'e', 'i', 'i', 'i', 'i', 'n', 'o', 'o', 'o', 'o', 'o', 'u', 'u', 'u', 'y', 'A', 'A', 'A', 'A', 'A', 'A', 'C', 'E', 'E', 'E', 'E', 'I', 'I', 'I', 'I', 'N', 'O', 'O', 'O', 'O', 'O', '0', 'U', 'U', 'U');
             return str_replace($comAcentos, $semAcentos, $text);
         }
+
+        /**
+         * Function to format the given text to url format.
+         * 
+         * @param String $string 
+         * @return string 
+         */
+        function textToUrl($string) {
+            //first replace % to %25
+            $char = "%";
+            $replace = "$25";
+            $string = str_replace($char, $replace, $string);
+
+
+            $entities = array('%21', '%2A', '%27', '%28', '%29', '%3B', '%3A', '%40', '%26', '%3D', '%2B', '%24', '%2C', '%2F', '%3F', '%23', '%5B', '%5D', '%20');
+            $replacements = array('!', '*', "'", "(", ")", ";", ":", "@", "&", "=", "+", "$", ",", "/", "?", "#", "[", "]", " ");
+            return str_replace($replacements, $entities, urlencode($string));
+        }
+
 
 
         /**

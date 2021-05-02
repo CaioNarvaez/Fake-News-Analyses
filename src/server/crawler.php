@@ -1,14 +1,15 @@
 <?php
 
-include('functions/Text.php');
-include('functions/Source.php');
+use Functions\Source;
+use Functions\Text;
+
+require_once realpath("../../vendor/autoload.php");
 
 function crawl_page($source = "G1", $text)
 {
     $txtFunctions = new Text();
     $sourceObj = new Source($source, $text);
     $dom = new DOMDocument('1.0');
-    $xpath = new DomXPath($dom);
     
     $url = $sourceObj->url.$sourceObj->searchFor;
 
@@ -39,18 +40,22 @@ function crawl_page($source = "G1", $text)
         $sourceObj->article = $article_content;
     }
     
+    $xpath = new DomXPath($dom);
     $nodeList = $xpath->query("//a/@href");
-    
-    $sourceObj->getLink($nodeList, $clean_text);
 
-    $link = "https:".$sourceObj->link;    
+    $sourceObj->getLink($nodeList, $text);
+
+
+    $link = "https:".$sourceObj->link;  
     $sourceObj->link = $link;
 
 
-    echo json_encode($sourceObj);
+    //echo $sourceObj->link;
+
+    //echo json_encode($sourceObj, JSON_UNESCAPED_UNICODE);
     
 }
 
-    $text = "gilmar deve indeferir recurso que contesta proibição de cultos e levar caso ao plenário";
+    $text = "Porto Velho: até a chegada de nova remessa, prevista para os próximos dias, também não há expectativa de retomar a aplicação da vacina";
     crawl_page("G1", $text);
 ?>
