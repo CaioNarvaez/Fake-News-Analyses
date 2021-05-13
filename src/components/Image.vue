@@ -15,9 +15,9 @@
           </label>
         </div>
       <div id="previewImage">
-        <h2 class="is-size-4">Comparacao entre imagens</h2>
-        <hr>
         <div v-if="url_image">
+          <h2 class="is-size-4" id="myCanvasLocal">Comparacao entre imagens</h2>
+          <hr>
           <img :src="url_image" class="image-uploaded"/>       
           <img :src="url_image_data" />
         </div>
@@ -27,12 +27,14 @@
 </template>
 
 <script>
+import { getImage } from "../functions/image-handling"; 
+
 export default {
   name: 'Image',
   data: function() {
        return {
           url_image: null,
-          url_image_data: 'https://i.pinimg.com/originals/dd/9a/98/dd9a98fd38f6f8c5d12da319f3dc3b52.jpg',
+          url_image_data: null
         }
   },
   methods: {
@@ -47,6 +49,8 @@ export default {
           fileName.textContent = file.name;
 
           this.url_image = URL.createObjectURL(file);
+
+          getImage(this.url_image);
     }
   }
 }
@@ -78,7 +82,7 @@ export default {
   align-items: center;
 }
 
-#previewImage img {
+#previewImage canvas {
   min-width: 30%;
   min-height: 350px;
   max-width: 45%;
