@@ -5,7 +5,7 @@ use Functions\Text;
 
 require_once realpath("../../vendor/autoload.php");
 
-function crawl_page($source = "G1", $text)
+function crawl_page($source = "CNNUSA", $text)
 {
     $txtFunctions = new Text();
     $sourceObj = new Source($source, $text);
@@ -15,9 +15,13 @@ function crawl_page($source = "G1", $text)
 
     @$dom->loadHTMLFile($url);
 
-    $anchors = $dom->getElementById($sourceObj->getElement);
+    $xpath = new DomXPath($dom);
 
+    $anchors = $dom->getElementById($sourceObj->getElement);
+    
     $content = $anchors->textContent;
+
+
 
     $clean_content = $txtFunctions->clearText($content);
     $clean_text = $txtFunctions->clearText($text);
@@ -40,7 +44,6 @@ function crawl_page($source = "G1", $text)
         $sourceObj->article = $article_content;
     }
     
-    $xpath = new DomXPath($dom);
     $nodeList = $xpath->query("//a/@href");
 
     $sourceObj->getLink($nodeList, $text);
@@ -56,6 +59,6 @@ function crawl_page($source = "G1", $text)
     
 }
 
-    $text = "Porto Velho: até a chegada de nova remessa, prevista para os próximos dias, também não há expectativa de retomar a aplicação da vacina";
+    $text = "CPI da Covid: representante da Pfizer depõe hoje";
     crawl_page("G1", $text);
 ?>

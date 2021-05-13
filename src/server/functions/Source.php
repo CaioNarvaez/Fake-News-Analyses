@@ -22,7 +22,9 @@ namespace Functions;
 
         public $link;
 
+        public $formatType;
 
+        public $getElementType;
 
         /**
          * 
@@ -38,9 +40,10 @@ namespace Functions;
                 $this->name = "G1";
                 $this->url = "https://g1.globo.com/busca/?q=";
                 $this->searchFor = $txtFunctions->formatTextPlus($text);
+                $this->getElementType = 1;
                 $this->getElement = "content";
                 $this->subExplode = "...";
-                $this->whatExplode = "G1";
+                $this->whatExplode = "G1";    
             }
 
           }
